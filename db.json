@@ -1,0 +1,77 @@
+var db = null;
+var var_no = null;
+var position = null;
+var index=0;
+
+
+ 
+// 데이터베이스 생성 및 오픈
+function openDB(){
+   db = window.openDatabase('boardDB', '1.0', '게시판DB', 1024*1024); 
+   console.log('1_DB 생성...'); 
+   
+   db.transaction(function(tr){
+ 	var selectSQL = 'select * from board';    
+  	tr.executeSql(selectSQL, [], function(tr, rs){
+  	    index= rs.rows.length;
+  	   });
+  	   
+  	});
+  	   
+} 
+
+// 테이블 생성 트랜잭션 실행
+function createTable() {
+   db.transaction(function(tr){
+   var createSQL = 'create table if not exists board(content text, year text)';       
+   tr.executeSql(createSQL, [], function(){
+     		console.log('2_1_테이블생성_sql 실행 성공...');        
+	   }, function(){
+	      console.log('2_1_테이블생성_sql 실행 실패...');            
+	   });
+	   }, function(){
+	      console.log('2_2_테이블 생성 트랜잭션 실패...롤백은 자동');
+	   }, function(){
+	      console.log('2_2_테이블 생성 트랜잭션 성공...');
+     });
+     
+     
+ } 
+ 
+// 데이터 입력 트랜잭션 실행
+ function insert(){ 
+    db.transaction(function(tr){
+  		var content = $('#content').val();
+  		var d = new Date();
+  		var time = d.getFullYear() + "-" + ("00" + (d.getMonth() + 1)).slice(-2) + "-" + ("00" + d.getDate()).slice(-2) + " " + ("00" + d.getHours()).slice(-2) + ":" + ("00" + d.getMinutes()).slice(-2) + ":" + ("00" + d.getSeconds()).slice(-2);
+  	
+  		var insertSQL = 'insert into board(content, year) values(?, ?)';  
+     	tr.executeSql(insertSQL, [content, time], function(tr, rs){    
+      	    console.log('3_ 댓글 등록...no: ' + rs.insertId);
+	        alert('댓글이 입력되었습니다. ');      	       
+	   	
+	   	$('#content').val('');      
+        index++;
+	   	
+		}, function(tr, err){
+				alert('DB오류 ' + err.message + err.code);
+			}
+		);
+    });   
+    search();   
+ }
+ 
+//데이터 검색 트랜잭션 실행
+function search(){
+ db.transaction(function(tr){
+  var selectSQL = 'select content,year from board';
+   tr.executeSql(selectSQL, [], function(tr, rs){
+ 
+
+    for(var i=1; i<index+1; i++){
+        $('#content'+(i+1)).val(rs.rows.item(index-i).year+ ' ' + rs.rows.item(index-i).content);
+    }
+
+ });
+});
+}
