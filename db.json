@@ -62,7 +62,7 @@ function createTable() {
  }
  
 //데이터 검색 트랜잭션 실행
-function search(){
+function search() {
  db.transaction(function(tr){
   var selectSQL = 'select content,year from board';
    tr.executeSql(selectSQL, [], function(tr, rs){
