@@ -7,5 +7,9 @@
 	<buildSpec>
 	</buildSpec>
 	<natures>
+<<<<<<< HEAD
+=======
+		<nature>com.aptana.projects.webnature</nature>
+>>>>>>> d541f8581871d4668e6298ff73020ad419e00f34
 	</natures>
 </projectDescription>
