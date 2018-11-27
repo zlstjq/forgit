@@ -27,12 +27,12 @@
 			}
 
 			button {
-				
-				font-size:25px;
-				font-weight:bold;
+
+				font-size: 25px;
+				font-weight: bold;
 				border-radius: 10px;
-				background-color:#FFFFFF;
-				margin-top:100px;
+				background-color: #FFFFFF;
+				margin-top: 100px;
 				margin-left: 280px;
 				width: 150px;
 				height: 80px;
@@ -115,6 +115,16 @@
 					obj.src = "image/fire1.png";
 
 				});
+
+				$("#st").on("click", function() {
+
+					if (f == 1)
+						location.href = "fire.html";
+					else if (p == 1)
+						location.href = "police.html";
+					else if (c == 1)
+						location.href = "creator.html";
+				});
 			});
 		</script>
 	</head>
@@ -125,7 +135,7 @@
 				<td><h1>체험 하고 싶은 직업을 선택하신 후 </h1></td>
 			</tr>
 			<tr>
-				<td><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;시작 버튼을 눌러주세요</h1></td>
+				<td><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Start 버튼을 눌러주세요</h1></td>
 			</tr>
 			<tr>
 				<td><img id="cr" width="125px" height="125px" src="image/creator1.png"><img id="fi" width="125px" height="125px" src="image/fire1.png"><img id="po" width="125px" height="125px" src="image/police1.png"></td>
@@ -133,8 +143,8 @@
 
 			<tr>
 				<td>
-				<button>
-					시작
+				<button id="st">
+					Start
 				</button></td>
 			</tr>
 

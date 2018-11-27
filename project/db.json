@@ -60,7 +60,9 @@ function select(){
   	 tr.executeSql(selectSQL, [id,pw], function(tr, rs){
   	   
   	 if(rs.rows.length>0){
-  	 location.href = "main.html";
+  	   $('#ID').val('');
+  	   $('#PW').val('');   
+  	   location.href = "main.html";
   	  
   	 }
 	 else{
