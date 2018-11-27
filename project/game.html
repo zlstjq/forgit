@@ -4,47 +4,138 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
-		<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.4.5.min.css"/>
-		<script src="jquery.mobile/jquery-1.11.1.min.js"></script>
-		<script src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 
 		<style type="text/css">
 			img {
+				margin-top: 30px;
 				border-radius: 100px;
-				margin-left: 100px;
+				margin-left: 85px;
 			}
 
 			table {
-				margin-top: 200px;
+				margin-top: 25px;
 				margin-left: auto;
 				margin-right: auto;
 			}
 
-		</style>
-		<script type="text/javascript">
-			var i = 0;
-			function toggle_object(post_id) {
-				i = i + post_id;
-				var obj = document.getElementById('cr');
-				if (!obj)
-					return;
-
-				if (i % 2 != 0) {
-					obj.src = "클릭했을때 보여줄 이미지";
-
-				} else {
-					obj.src = "처음보여줄이미지";
-				}
+			h1 {
+				margin-left: 85px;
+				color: #FFFFFF
 			}
 
+			button {
+				
+				font-size:25px;
+				font-weight:bold;
+				border-radius: 10px;
+				background-color:#FFFFFF;
+				margin-top:100px;
+				margin-left: 280px;
+				width: 150px;
+				height: 80px;
+			}
+
+			/*i = i + post_id;
+			 var obj = document.getElementById('cr');
+			 if (!obj)
+			 return;
+
+			 if (i % 2 != 0) {
+			 obj.src = "image/creator2.png";
+
+			 } else {
+			 obj.src = "image/creator1.png";
+			 }*/
+
+		</style>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var c = 0;
+				var f = 0;
+				var p = 0;
+
+				$("#cr").on("click", function() {
+
+					f = 0;
+					p = 0;
+					c++;
+					var obj = document.getElementById('cr');
+
+					if (c % 2 == 1) {
+						obj.src = "image/creator2.png";
+					} else {
+						obj.src = "image/creator1.png";
+					}
+
+					obj = document.getElementById('fi');
+					obj.src = "image/fire1.png";
+					obj = document.getElementById('po');
+					obj.src = "image/police1.png";
+				});
+
+				$("#fi").on("click", function() {
+
+					p = 0;
+					c = 0;
+					f++;
+					var obj = document.getElementById('fi');
+
+					if (f % 2 == 1) {
+						obj.src = "image/fire2.png";
+					} else {
+						obj.src = "image/fire1.png";
+					}
+
+					obj = document.getElementById('cr');
+					obj.src = "image/creator1.png";
+					obj = document.getElementById('po');
+					obj.src = "image/police1.png";
+
+				});
+
+				$("#po").on("click", function() {
+
+					c = 0;
+					f = 0;
+					p++;
+					var obj = document.getElementById('po');
+
+					if (p % 2 == 1) {
+						obj.src = "image/police2.png";
+					} else {
+						obj.src = "image/police1.png";
+					}
+
+					obj = document.getElementById('cr');
+					obj.src = "image/creator1.png";
+					obj = document.getElementById('fi');
+					obj.src = "image/fire1.png";
+
+				});
+			});
 		</script>
 	</head>
-	<body>
 
+	<body bgcolor="#0b71a5">
 		<table>
 			<tr>
-				<td><img id="cr" width="100px" height="100px" src="image/creator1.png" onmouseover="this.src='image/creator2.png'" onmouseout="this.src='image/creator1.png'"><img id="fi" width="100px" height="100px" src="image/fire1.png" onmouseover="this.src='image/fire2.png'" onmouseout="this.src='image/fire1.png'"><img id="po" width="100px" height="100px" src="image/police1.png" onmouseover="this.src='image/police2.png'" onmouseout="this.src='image/police1.png'"></td>
+				<td><h1>체험 하고 싶은 직업을 선택하신 후 </h1></td>
+			</tr>
+			<tr>
+				<td><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;시작 버튼을 눌러주세요</h1></td>
+			</tr>
+			<tr>
+				<td><img id="cr" width="125px" height="125px" src="image/creator1.png"><img id="fi" width="125px" height="125px" src="image/fire1.png"><img id="po" width="125px" height="125px" src="image/police1.png"></td>
+			</tr>
 
+			<tr>
+				<td>
+				<button>
+					시작
+				</button></td>
 			</tr>
 
 		</table>
