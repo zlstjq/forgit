@@ -1,0 +1,82 @@
+var db = null;
+var flag="false";
+
+// 데이터베이스 생성 및 오픈
+function openDB(){
+   db = window.openDatabase('id', '1.0', '회원정보DB', 1024*1024); 
+   console.log('1_DB 생성...'); 
+} 
+
+// 테이블 생성 트랜잭션 실행
+function createTable() {
+   db.transaction(function(tr){
+   var createSQL = 'create table if not exists info(id text, pw text)';       
+   tr.executeSql(createSQL, [], function(){
+     		console.log('2_1_테이블생성_sql 실행 성공...');        
+	   }, function(){
+	      console.log('2_1_테이블생성_sql 실행 실패...');            
+	   });
+	   }, function(){
+	      console.log('2_2_테이블 생성 트랜잭션 실패...롤백은 자동');
+	   }, function(){
+	      console.log('2_2_테이블 생성 트랜잭션 성공...');
+     });
+ }
+ 
+ function insert(){ 
+    db.transaction(function(tr){
+  		var id = $('#ID2').val();
+  		var pw = $('#PW2').val();
+  		
+  		if(!(id=="" || pw=="")){
+  		var insertSQL = 'insert into info(id, pw) values(?, ?)';      
+     	tr.executeSql(insertSQL, [id, pw], function(tr, rs){    
+      	    console.log('3_ 아이디 등록...no: ' + rs.insertId);
+	        alert('회원가입이 완료되었습니다.');      	       
+	   		$('#ID2').val('');      
+			$('#PW2').val('');      
+		}, function(tr, err){
+				alert('DB오류 ' + err.message + err.code);
+			}
+		);
+		}
+		else{
+		   $("#dialog2").dialog("open"); 
+		   alert('빈칸을 모두 채워주세요.');    
+		    	
+		}
+    });      
+ }
+ 
+function select(){
+   db.transaction(function(tr){
+	 var selectSQL = 'select id, pw from info where id=? and pw=?';
+	 var id = $('#ID').val();
+  	 var pw = $('#PW').val();        
+ 
+  	 
+  	 if(!(id=="" || pw=="")){
+  	 
+  	 tr.executeSql(selectSQL, [id,pw], function(tr, rs){
+  	   
+  	 if(rs.rows.length>0){
+  	 location.href = "main.html";
+  	  
+  	 }
+	 else{
+	 alert('아이디와 비밀번호를 다시 한번 확인해주세요'); // 로그인 실패
+	  $('#ID').val('');
+  	  $('#PW').val('');    
+	 }    
+	 });
+	 }	
+     
+     
+     
+     else{
+		   alert('아이디와 비밀번호를 다시 한번 확인해주세요');    
+		    	
+	 }
+	    
+   });         
+} 

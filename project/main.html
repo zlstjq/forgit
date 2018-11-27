@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="initial-scale=1.0, width=device-width">
+		<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.4.5.min.css"/>
+		<script src="jquery.mobile/jquery-1.11.1.min.js"></script>
+		<script src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+
+		<style type="text/css">
+			table {
+				margin-top: 10px;
+				margin-bottom: 10px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+		</style>
+
+		<script>
+			$(document).ready(function() {
+
+				$("#game").on("click", function() {
+					location.href = "game.html";
+				});
+
+				$("#back").on("click", function() {
+					location.href = "index.html";
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div data-role="page" id="mainPage">
+			<div  data-role="header" data-position="fixed">
+				<h1>메인 화면</h1>
+				<a id="back" data-icon="refresh" class="ui-btn-right" >logout</a>
+			</div>
+			<div data-role="content">
+
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<table>
+					<tr>
+						<td>
+						<button>
+							<a href="game.html"><img id="game" width="120px" height="80px" src="image/game.png"></a>
+						</button>
+						<button>
+							<img id="record" width="120px" height="80px" src="image/record.png">
+						</button>
+						<button>
+							<img id="setting" width="120px" height="80px" src="image/setting.png">
+						</button></td>
+					</tr>
+
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
