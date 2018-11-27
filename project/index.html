@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	<script src="db.json"></script>
+
+	<style type="text/css">
+		table {
+			margin-top: 10px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.ef {
+			border-radius: 4px;
+			width: 95px;
+			height: 30px;
+			background-color: white;
+		}
+
+		.eff {
+			border-radius: 4px;
+			width: 180px;
+			height: 30px;
+			background-color: white;
+		}
+
+		img {
+			border-radius: 10px;
+		}
+	</style>
+
+	<script>
+		$(document).ready(function() {
+
+			openDB();
+			createTable();
+
+			$("#dialog").dialog({
+				autoOpen : false, //자동으로 열리지않게
+			});
+
+			$("#login").on("click", function() {
+				select();
+			});
+
+			$("#sign").on("click", function() {
+				$("#dialog").dialog("open");
+			});
+
+			$("#dialog2").dialog({
+				autoOpen : false, //자동으로 열리지않게
+
+			});
+
+			$("#nor").on("click", function() {
+				$("#dialog").dialog("close");
+				$("#dialog2").dialog("open");
+			});
+
+			$("#ok").on("click", function() {
+				insert();
+				$("#dialog2").dialog("close");
+			})
+
+			$("#no").on("click", function() {
+				$("#dialog2").dialog("close");
+			})
+		});
+	</script>
+</head>
+
+<body bgcolor="#F6F6F6">
+
+	<br>
+	<img width="450px" height="100px" style="margin-left: auto; margin-right: auto; display: block;" src="image/d.png">
+	<br>
+
+	<table>
+		<tr>
+			<td><label for="ID">ID&nbsp;</label></td>
+			<td>
+			<input type="text" id="ID" name="ID" placeholder="ID">
+			</input></td>
+
+		</tr>
+	</table>
+
+	<table>
+		<tr>
+			<td><label for="PW">PW </label></td>
+			<td>
+			<input type="text" id="PW" name="PW" placeholder="PW">
+			</input></td>
+
+		</tr>
+
+	</table>
+
+	<table>
+		<tr>
+			<td><img width="45px" height="45px" src="image\kakao.png"/></td>
+			<td><img width="45px" height="45px" src="image\naver.jpg"/></td>
+			<td><img width="45px" height="45px" src="image\google.png"/></td>
+			<td><img width="45px" height="45px" src="image\face.png"/></td>
+		</tr>
+	</table>
+
+	<table>
+		<tr>
+			<td>
+			<input type="button" class="ef" id="login" value="로그인"/>
+			</td>
+			<td>
+			<input type="button" class="ef" id="sign" value="회원가입"/>
+			</td>
+		</tr>
+	</table>
+
+	<div style="background-color: #F6F6F6" id="dialog" title="회원가입">
+		<br>
+		<table>
+			<tr>
+				<td>
+				<input type="button" class="eff" id="nor" value="일반 사용자"/>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<table>
+			<tr>
+				<td>
+				<input type="button" class="eff" id="con" value="컨텐츠 프로바이더"/>
+				</td>
+			</tr>
+		</table>
+		<br>
+	</div>
+
+	<div style="background-color: #F6F6F6" id="dialog2" title="회원가입">
+		<table>
+			<tr>
+				<td><label for="ID2">ID </label></td>
+				<td>
+				<input type="text" id="ID2" name="ID2" placeholder="ID">
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+				<td><label for="PW2">PW </label></td>
+				<td>
+				<input type="password" id="PW2" name="PW2" placeholder="PW">
+				</td>
+			</tr>
+		</table>
+
+		<table>
+
+			<tr>
+				<td>
+				<input type="button" class="ef" id="ok" value="확인"/>
+				</td>
+				<td>
+				<input type="button" class="ef" id="no" value="취소"/>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+
+</body>
+
+</html>
