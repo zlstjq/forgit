@@ -16,21 +16,37 @@
 		}
 
 		.ef {
-			border-radius: 4px;
-			width: 95px;
-			height: 30px;
+			margin-top: 10px;
+			border-radius: 7px;
+			width: 155px;
+			height: 45px;
+			background-color: white;
+		}
+
+		.efff {
+			margin-top: 10px;
+			border-radius: 7px;
+			width: 120px;
+			height: 45px;
 			background-color: white;
 		}
 
 		.eff {
-			border-radius: 4px;
+			border-radius: 7px;
 			width: 180px;
 			height: 30px;
 			background-color: white;
 		}
 
 		img {
+			margin-top:10px;
 			border-radius: 10px;
+		}
+		
+		.te{
+			font-size:30px;
+			width: 230px;
+			height: 40px;
 		}
 	</style>
 
@@ -77,14 +93,14 @@
 <body bgcolor="#F6F6F6">
 
 	<br>
-	<img width="450px" height="100px" style="margin-left: auto; margin-right: auto; display: block;" src="image/d.png">
+	<img width="550px" height="140px" style="margin-left: auto; margin-right: auto; display: block;" src="image/login.png">
 	<br>
 
 	<table>
 		<tr>
-			<td><label for="ID">ID&nbsp;</label></td>
+			<td><label for="ID" class="te">ID&nbsp;&nbsp;</label></td>
 			<td>
-			<input type="text" id="ID" name="ID" placeholder="ID">
+			<input type="text" class="te" id="ID" name="ID" placeholder="ID">
 			</input></td>
 
 		</tr>
@@ -92,9 +108,9 @@
 
 	<table>
 		<tr>
-			<td><label for="PW">PW </label></td>
+			<td><label for="PW" class="te">PW&nbsp;</label></td>
 			<td>
-			<input type="text" id="PW" name="PW" placeholder="PW">
+			<input type="password" class="te" id="PW" name="PW" placeholder="PW">
 			</input></td>
 
 		</tr>
@@ -103,10 +119,10 @@
 
 	<table>
 		<tr>
-			<td><img width="45px" height="45px" src="image\kakao.png"/></td>
-			<td><img width="45px" height="45px" src="image\naver.jpg"/></td>
-			<td><img width="45px" height="45px" src="image\google.png"/></td>
-			<td><img width="45px" height="45px" src="image\face.png"/></td>
+			<td><img width="75px" height="75px" src="image\kakao.png"/></td>
+			<td><img width="75px" height="75px" src="image\naver.jpg"/></td>
+			<td><img width="75px" height="75px" src="image\google.png"/></td>
+			<td><img width="75px" height="75px" src="image\face.png"/></td>
 		</tr>
 	</table>
 
@@ -164,10 +180,10 @@
 
 			<tr>
 				<td>
-				<input type="button" class="ef" id="ok" value="확인"/>
+				<input type="button" class="efff" id="ok" value="확인"/>
 				</td>
 				<td>
-				<input type="button" class="ef" id="no" value="취소"/>
+				<input type="button" class="efff" id="no" value="취소"/>
 				</td>
 			</tr>
 		</table>
