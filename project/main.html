@@ -3,23 +3,44 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<meta name="viewport" content="initial-scale=1.0, width=device-width">
+		<meta id="viewport" name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.4.5.min.css"/>
 		<script src="jquery.mobile/jquery-1.11.1.min.js"></script>
 		<script src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
 
 		<style type="text/css">
 			table {
-				margin-top: 10px;
-				margin-bottom: 10px;
 				margin-left: auto;
 				margin-right: auto;
+			}
+
+			img {
+				margin-left: 5%;
+				width: 85%;
+				height: 30%;
+				background-color: white;
+				border-radius: 10px;
+			}
+
+			#mainPage {
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			body, html {
+				height: 100%;
+				overflow: hidden;
 			}
 
 		</style>
 
 		<script>
 			$(document).ready(function() {
+
+				$("#se").hide();
+				$("#dialog").dialog({
+					autoOpen : false, //자동으로 열리지않게
+				});
 
 				$("#game").on("click", function() {
 					location.href = "game.html";
@@ -28,35 +49,56 @@
 				$("#back").on("click", function() {
 					location.href = "index.html";
 				});
+				$("#setting").on("click", function() {
+					$("#se").toggle(10);
+				});
 			});
 		</script>
 	</head>
 	<body>
-		<div data-role="page" id="mainPage">
+		<div data-role="page" id="mainPage" style="background-image:url(image/two.png)">
 			<div  data-role="header" data-position="fixed">
 				<h1>메인 화면</h1>
 				<a id="back" data-icon="refresh" class="ui-btn-right" >logout</a>
 			</div>
-			<div data-role="content">
+			<div data-role="content" id="content">
 
-			</div>
-			<div data-role="footer" data-position="fixed">
-				<table>
+				<div id="se" hidefocus="true">
+
+					<label for="sc">볼륨</label>
+					<input type="range" name="sc" id="sc" value="50" min="0" max="100"/>
+
+					<br>
+
+					<label for="vi">진동</label>
+					<select name="vi" id="vi" data-role="slider">
+						<option value="on">on</option>
+						<option value="off">off</option>
+					</select>
+
+					<br>
+					<br>
+					<label for="sa">자동저장</label>
+					<select name="sa" id="sa" data-role="slider">
+						<option value="on">on</option>
+						<option value="off">off</option>
+					</select>
+				</div>
+
+				<table >
 					<tr>
-						<td>
-						<button>
-							<a href="game.html"><img id="game" width="120px" height="80px" src="image/game.png"></a>
-						</button>
-						<button>
-							<img id="record" width="120px" height="80px" src="image/record.png">
-						</button>
-						<button>
-							<img id="setting" width="120px" height="80px" src="image/setting.png">
-						</button></td>
+						<td><a href="game.html"><img id="game" src="image/game.png"></a></td>
+					</tr>
+					<tr>
+						<td><a><img id="record" src="image/record.png"></a></td>
+					</tr>
+					<tr>
+						<td><img id="setting" src="image/setting.png"></td>
 					</tr>
 
 				</table>
 			</div>
 		</div>
+
 	</body>
 </html>

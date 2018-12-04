@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	<meta id="viewport" name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.4.5.min.css"/>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
@@ -10,13 +10,15 @@
 
 	<style type="text/css">
 		table {
-			margin-top: 10px;
 			margin-left: auto;
 			margin-right: auto;
 		}
+		
+		label{
+			color: white;
+		}
 
 		.ef {
-			margin-top: 10px;
 			border-radius: 7px;
 			width: 155px;
 			height: 45px;
@@ -24,7 +26,6 @@
 		}
 
 		.efff {
-			margin-top: 10px;
 			border-radius: 7px;
 			width: 120px;
 			height: 45px;
@@ -39,14 +40,26 @@
 		}
 
 		img {
-			margin-top:10px;
+			margin-top: -5px;
 			border-radius: 10px;
 		}
 		
-		.te{
-			font-size:30px;
+		#im{
+			
+			margin-top: 10px;
+		}
+
+		.te {
+			font-size: 30px;
 			width: 230px;
 			height: 40px;
+		}
+		
+		body, html{
+			background-repeat: no-repeat;
+			background-size: cover;
+			height : 100%;
+			overflow: hidden;
 		}
 	</style>
 
@@ -90,13 +103,13 @@
 	</script>
 </head>
 
-<body bgcolor="#F6F6F6">
+<body background="image/bgim.gif">
 
 	<br>
-	<img width="550px" height="140px" style="margin-left: auto; margin-right: auto; display: block;" src="image/login.png">
+	<img width="400px" height="100px" style="margin-left: auto; margin-right: auto; display: block;" src="image/login.png">
 	<br>
 
-	<table>
+	<table style="margin-top: -15px;">
 		<tr>
 			<td><label for="ID" class="te">ID&nbsp;&nbsp;</label></td>
 			<td>
@@ -106,7 +119,7 @@
 		</tr>
 	</table>
 
-	<table>
+	<table style="margin-top: 10px;">
 		<tr>
 			<td><label for="PW" class="te">PW&nbsp;</label></td>
 			<td>
@@ -117,7 +130,7 @@
 
 	</table>
 
-	<table>
+	<table id="im">
 		<tr>
 			<td><img width="75px" height="75px" src="image\kakao.png"/></td>
 			<td><img width="75px" height="75px" src="image\naver.jpg"/></td>
@@ -126,7 +139,7 @@
 		</tr>
 	</table>
 
-	<table>
+	<table id="im">
 		<tr>
 			<td>
 			<input type="button" class="ef" id="login" value="로그인"/>
