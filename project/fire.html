@@ -2,38 +2,45 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
-		<meta name="viewport" content="initial-scale=1.0, width=device-width">
+		<meta id="viewport" name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+		<script src="jquery.mobile/jquery-1.11.1.min.js"></script>
+		<script src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
 
 	</head>
-	
+
 	<style>
-		
-		#te{
-			
-			
-			margin-top:2%;
-			margin-left:2%;
+		#te {
+			margin-top: 2%;
+			margin-left: 2%;
 			width: 95%;
-			height: 120px;
+			height: 70%;
 			border-color: white;
 			background-color: black;
 			color: white;
 			border-radius: 10px;
-			font-size: 30px;
-			
+			font-size: 20px;
 		}
-		
-		#im{
-			margin-top: 3%;
-			width: 55%;
-			
+
+		#im {
+			margin-top: 1%;
+			width: 65%;
+			height: 40%;
 		}
+
 	</style>
 
 	<body bgcolor="#000000">
-		<img id="im" style="margin-left: auto; margin-right: auto; display: block;" src="image/fire.jpg">
-		<textarea style="overflow-y: hidden" disabled="true" style="margin-left: auto; margin-right: auto; display: block;" id="te">  안녕하세요 당신은 화재 및 재난, 재해를 예방하고 대응하며 위급한 상황으로 부터 구조 구급활동을 통해 국민의 재산과 신체를 보호하는 것을 주임무로 하는 소방관입니다. &#10;여러분은 지금부터 소방관의 하루를 체험하게 됩니다. 
-		</textarea>
+		<div data-role="page">
+			<div data-role="header" data-position="fixed">
+
+			</div>
+			<div data-role="content" data-position="fixed">
+				<img id="im" style="margin-left: auto; margin-right: auto; display: block;" src="image/fire.jpg">
+				<textarea style="overflow-y: hidden" disabled="true" style="margin-left: auto; margin-right: auto; display: block;" id="te">  안녕하세요 당신은 화재 및 재난, 재해를 예방하고 대응하며 위급한 상황으로 부터 구조 구급활동을 통해 국민의 재산과 신체를 보호하는 것을 주임무로 하는 소방관입니다. &#10;여러분은 지금부터 소방관의 하루를 체험하게 됩니다. 상황에 맞는 선택지를 선택하여 재밌는 체험을 해보시길 바랍니다.</textarea>
+			</div>
+			<div data-role="footer" data-position="fixed">
+
+			</div>
+		</div>
 	</body>
 </html>
