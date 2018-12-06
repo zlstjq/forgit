@@ -3,44 +3,142 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta id="viewport" name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
-		<script src="jquery.mobile/jquery-1.11.1.min.js"></script>
-		<script src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
 
 	</head>
 
+	<script src="//code.jquery.com/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+
+			var i = 2;
+			var f = 0;
+			var s = 0;
+			var t = 0;
+
+			$("#bu").on("click", function() {
+
+				$("#f").css("color", "white");
+				$("#s").css("color", "white");
+				$("#t").css("color", "white");
+
+				var obj = document.getElementById('im');
+
+				if (i == 2) {
+					obj.src = "image/fi" + i + ".jpg";
+					$("#f").text("\r 소방대원 : 따르릉.. 따르릉.. 네 119입니다. 무엇을 도와드릴까요?");
+					$("#s").text("\r 시민 : 살려주세요! 집안에 불이 났는데 불때문에 나갈수가 없어요 ");
+					$("#t").text("\r 소방대원 : 네! 지금 당장 차량을 보내도록 하겠습니다. 연기를 마시지 마시고 조금만 기다려주세요.");
+				}
+
+				if (i == 3) {
+					obj.src = "image/fi" + i + ".jpg";
+					$("#f").text("\r 소방차가 화재현장에 도착하였습니다. 무엇부터 하시겠습니까?");
+					$("#s").text("\r 1. 화재현장에 진입하기 위해 신속히 내린다. ");
+					$("#t").text("\r 2. 내리기 전 주위상황을 충분히 살피고 내린다.");
+				}
+
+				if (i == 4) {
+					if (s == 1) {
+						obj.src = "image/fi" + i + ".jpg";
+						$("#f").text("\r 차문을 급하게 여는 바람에 지나가는 아이가 다칠뻔 했습니다!! 다음부터는 조심해주세요 ");
+						$("#s").css("color", "red");
+						$("#s").text("\r 패널티로 매력 스탯이 1감소합니다. ");
+						$("#t").text("");
+					}
+
+					if (t == 1) {
+
+					}
+				}
+
+				i++;
+			});
+
+			$("#f").on("click", function() {
+				if (i > 4) {
+					$("#f").css("color", "red");
+					$("#s").css("color", "white");
+					$("#t").css("color", "white");
+
+					f = 1;
+					s = 0;
+					t = 0;
+				}
+			});
+
+			$("#s").on("click", function() {
+				if (i > 3) {
+					$("#s").css("color", "red");
+					$("#f").css("color", "white");
+					$("#t").css("color", "white");
+
+					s = 1;
+					f = 0;
+					t = 0;
+				}
+			});
+
+			$("#t").on("click", function() {
+				if (i > 3) {
+					$("#t").css("color", "red");
+					$("#s").css("color", "white");
+					$("#f").css("color", "white");
+
+					s = 0;
+					f = 0;
+					t = 1;
+				}
+			});
+
+		});
+	</script>
+
 	<style>
+		#im {
+			margin-top: 2%;
+			width: 65%;
+		}
+
+		#bu {
+			position: absolute;
+			margin-left: 93.3%;
+			margin-top: -1.7%;
+			border-width: 2px;
+			border-color: white;
+			border-radius: 7px;
+			background-color: black;
+			color: white;
+		}
+
 		#te {
 			margin-top: 2%;
 			margin-left: 2%;
-			width: 95%;
-			height: 70%;
 			border-color: white;
-			background-color: black;
 			color: white;
-			border-radius: 10px;
-			font-size: 20px;
-		}
-
-		#im {
-			margin-top: 1%;
-			width: 65%;
-			height: 40%;
+			border-radius: 7px;
+			border-style: inset;
+			border-width: 1px;
+			font-size: 18px;
+			width: 95%;
+			height: 100px;
 		}
 
 	</style>
 
 	<body bgcolor="#000000">
-		<div data-role="page">
-			<div data-role="header" data-position="fixed">
 
-			</div>
-			<div data-role="content" data-position="fixed">
-				<img id="im" style="margin-left: auto; margin-right: auto; display: block;" src="image/fire.jpg">
-				<textarea style="overflow-y: hidden" disabled="true" style="margin-left: auto; margin-right: auto; display: block;" id="te">  안녕하세요 당신은 화재 및 재난, 재해를 예방하고 대응하며 위급한 상황으로 부터 구조 구급활동을 통해 국민의 재산과 신체를 보호하는 것을 주임무로 하는 소방관입니다. &#10;여러분은 지금부터 소방관의 하루를 체험하게 됩니다. 상황에 맞는 선택지를 선택하여 재밌는 체험을 해보시길 바랍니다.</textarea>
-			</div>
-			<div data-role="footer" data-position="fixed">
+		<div data-role="content" data-position="fixed">
+			<img id="im" style="margin-left: auto; margin-right: auto; display: block;" src="image/fi.jpg">
 
+			<div id="te">
+
+				<h4 id="f" style="margin-top: 0.5%;">&nbsp;안녕하세요 당신은 화재 및 재난, 재해를 예방하고 대응하며 위급한 상황으로 부터 구조 구급활동을 통해 국민의 재산과 신체를 보호하는 것을 주임무로 하는 소방관입니다. &#10;여러분은 지금부터 소방관의 하루를 체험하게 됩니다. 상황에 맞는 선택지를 선택하여 재밌는 체험을 해보시길 바랍니다. </h4>
+				<h4 id="s" style="margin-top: -1.5%;"></h4>
+				<h4 id="t" style="margin-top: -1.5%;"></h4>
 			</div>
+			<button id="bu">
+				다음
+			</button>
 		</div>
 	</body>
 </html>
