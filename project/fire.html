@@ -2,90 +2,645 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<meta id="viewport" name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
-
+		<meta id="viewport" name="viewport" content=target-densitydpi="320" />
 	</head>
 
 	<script src="//code.jquery.com/jquery.min.js"></script>
+	<script src="mini.json"></script>
+
 	<script>
 		$(document).ready(function() {
 
-			var i = 2;
-			var f = 0;
+			var i = 0;
+			var j = 0;
 			var s = 0;
 			var t = 0;
+			var fo = 0;
+			var second = 15;
+			var flag = -1;
 
-			$("#bu").on("click", function() {
+			$("#bu, #buu").on("click", function() {//다음 버튼을 눌러서 다음 상황으로 이동
 
-				$("#f").css("color", "white");
 				$("#s").css("color", "white");
 				$("#t").css("color", "white");
+				$("#fo").css("color", "white");
 
 				var obj = document.getElementById('im');
 
+				if (i == 100)
+					location.href = "main.html";
+
+				if (i == 0) {
+
+					$("#title").text("소방서 사무실");
+					$("#title").css("visibility", "visible");
+
+					obj.src = "image/fi" + i + ".jpg";
+
+					if (j == 0) {
+						$('#au1').attr({
+							src : 'audio/bgm1.mp3',
+							autoplay : "true"
+						});
+						$("#f").text("\r 화창한 햇살이 사무실을 비추고 있고 밖에서는 아이들의 웃음소리가 끊이질 않는다. 한가롭기 짝이 없지만 이렇게 할일이 없다는 것은 세상이 그만큼 평화롭다는 것이 아닐까? 라고 생각하며 이 평화가 유지되길 바란다. 한창 이런 생각을 하고 있을때쯤 적막을 깨고 옆에서 동료들이 농담을 주고 받는다.");
+
+					}
+
+					if (j == 1) {
+						$("#f").text("\r 동료1 : 내가 젊었을때는 말이야 양팔에 시민 한명씩 안고 현장을 뛰어 다니고 그랬어");
+						$("#s").text("\r 동료2 : 또 또 허세부린다 ㅋㅋㅋㅋ 나는 그러면 5층에서 시민 안고 뛰어 내리고 그랬어 임마 ");
+						$("#t").text("\r 동료1 : 진짜라니까 그러네.. 어떻게 보여줄 수도 없고 이거 참..");
+						$("#fo").text("\r 동료2 : 아 그래그래 그렇다고 치자~");
+					}
+
+					if (j == 2) {
+						$("#f").text("\r 여느때와 같이 동료들의 시덥지않은 농담을 들으며 평화를 만끽하고 있던 순간 평화를 깨듯 날카로운 전화벨 소리가 울린다.");
+						$("#s").text("");
+						$("#t").text("");
+						$("#fo").text("");
+					}
+
+					if (j == 3) {
+
+						$('#au1').attr({
+							src : 'audio/bgm2.mp3',
+							autoplay : "true"
+						});
+						$("#f").text("\r 소방대원 : (따르릉.. 따르릉..) 네 119입니다. 무엇을 도와드릴까요?");
+						$("#s").text("\r 시민 : 살려주세요! 집안에 불이 났는데 불때문에 나갈수가 없어요 ");
+						$("#t").text("\r 소방대원 : 위치가 xx동 xx아파트 맞으신가요??");
+						$("#fo").text("\r 시민 : 네..(콜록 콜록) 빨리 와주세요! ");
+						i++;
+						j = -1;
+					}
+
+					i--;
+					j++;
+				}
+
+				if (i == 1) {
+					obj.src = "image/fi" + i + ".jpg";
+					$("#f").text("\r 소방대원 : 네! 지금 당장 차량을 보내도록 하겠습니다. 연기를 마시지 마시고 조금만 기다려주세요.");
+					$("#s").text("\r 소방대원들은 누가 먼저랄것도 없이 일사천리로 준비를 마치고 현장을 향해 출발한다.");
+					$("#t").text("");
+					$("#fo").text("");
+
+				}
+
 				if (i == 2) {
 					obj.src = "image/fi" + i + ".jpg";
-					$("#f").text("\r 소방대원 : 따르릉.. 따르릉.. 네 119입니다. 무엇을 도와드릴까요?");
-					$("#s").text("\r 시민 : 살려주세요! 집안에 불이 났는데 불때문에 나갈수가 없어요 ");
-					$("#t").text("\r 소방대원 : 네! 지금 당장 차량을 보내도록 하겠습니다. 연기를 마시지 마시고 조금만 기다려주세요.");
+					$("#title").text("꽉만힌 도로 ");
+
+					if (j == 0) {
+						$("#f").text("\r 한시가 급한 상황인데 도로가 꽉막혀 움직일 생각을 하지 않는다. 화재 발생 후 화재현장에 5분안에 도착해야 안정적으로 화재진압을 할 수 있는데 이렇게 꽉 막힌 도로에 갇혀 시간을 낭비하고 있어 목이 타들어갈듯 하다.");
+						$("#s").text("");
+						$("#t").text("");
+						$("#fo").text("");
+
+					}
+
+					if (j == 1) {
+
+						$('#au1').attr({
+							src : 'audio/cra.mp3',
+							autoplay : "true"
+						});
+
+						$("#f").text("\r 시끄러운 경적 소리가 도로를 감싸안는다.");
+						$("#s").text("\r 동료1 : 도대체가 비킬 생각을 안하네.. ");
+						$("#t").text("\r 동료2 : 예전에 벌금이 최대 20만원이었을때는 정말 비키는 사람이 바보였었지");
+						$("#fo").text("\r 동료1 : 그때는 생각하기도 싫어");
+					}
+
+					if (j == 2) {
+						$("#f").text("\r 동료1 : 예전보다는 나아졌지만 아직도 40%의 비율로 소방차들이 양보하지 않는 차량들때문에 제 시간에 화재현장에 도착하지 못한다니..");
+						$("#s").text("\r 동료2 : 언제쯤 시민의식이 개선될련지");
+						$("#t").text("\r ");
+						$("#fo").text("\r 동료들이 한참 불만을 토로하고 있을 때 도로가 뚫렸고 아슬아슬하게 현장에 도착했다.");
+						j = -1;
+						i++;
+					}
+
+					i--;
+					j++;
 				}
 
 				if (i == 3) {
+
+					$("#title").text("화재현장 주차장");
+
+					$('#au1').attr({
+						src : '',
+						autoplay : "true"
+					});
+
 					obj.src = "image/fi" + i + ".jpg";
 					$("#f").text("\r 소방차가 화재현장에 도착하였습니다. 무엇부터 하시겠습니까?");
-					$("#s").text("\r 1. 화재현장에 진입하기 위해 신속히 내린다. ");
-					$("#t").text("\r 2. 내리기 전 주위상황을 충분히 살피고 내린다.");
+					$("#s").text("\r 1. 화재현장에 진입하기 위해 신속히 내린다.");
+					$("#t").text("\r 2. 보조브레이크를 채운 뒤 내리기 전 주위상황을 충분히 살피고 내린다.");
+					$("#fo").text("\r 3. 빠르게 화재를 진압하기 위해 길가에 차량을 댄다.");
+
 				}
 
 				if (i == 4) {
-					if (s == 1) {
-						obj.src = "image/fi" + i + ".jpg";
-						$("#f").text("\r 차문을 급하게 여는 바람에 지나가는 아이가 다칠뻔 했습니다!! 다음부터는 조심해주세요 ");
-						$("#s").css("color", "red");
-						$("#s").text("\r 패널티로 매력 스탯이 1감소합니다. ");
-						$("#t").text("");
-					}
+					if (fo == 0 && t == 0 && s == 0) {
+						alert('선택지를 선택해주세요.');
+						i--;
+					} else {
+						if (s == 1) {
 
-					if (t == 1) {
+							$('#au1').attr({
+								src : 'audio/break.mp3',
+								autoplay : "true"
+							});
+							obj.src = "image/fi" + i + ".jpg";
+							$("#f").text("\r 차문을 급하게 여는 바람에 지나가는 아이가 다칠뻔 했습니다!! 다음부터는 조심해주세요 ");
+							$("#s").text("\r Tip) 소방차와 같이 대형차랑은 하차시 보조브레이크를 확실히 채운 뒤 고임목 놓아야 합니다. 또 사각지대가 많으므로 급하게 하차할 시 보행자가 다칠 수 있습니다. 그러므로  항상 주변을 살핀 뒤 하차하도록 해야합니다.");
+							$("#t").css("color", "red");
+							$("#t").text("\r 패널티로 민첩 스탯이 1감소합니다. ");
+							$("#fo").text("");
 
+						}
+
+						if (t == 1) {
+							obj.src = "image/fi" + i + "s.jpg";
+							$("#f").text("\r 주변을 살피자 지나가는 아이가 있었습니다. 아이가 무서히 지나간 뒤  차량을 완전히 정차시킨 후 화재현장을 향해 달려갑니다.");
+							$("#s").css("color", "red");
+							$("#s").text("\r 신중한 대처로 민첩 스탯이 1증가합니다. ");
+							$("#t").text("");
+							$("#fo").text("");
+						}
+
+						if (fo == 1) {
+							obj.src = "image/fi" + i + "fo.jpg";
+							$("#f").text("\r 길가에 댄 차량이 다른 소방차들의 진입을 방해했습니다! ");
+							$("#s").text("\r Tip) 화재 현장시 차량을 길가에 주차할 경우 다른 소방차량이나 구급차량이 진입하는데 방해가 될수 있으므로 반드시 충분한 여건이 없는 경우가 아니라면 넓은 지역에 차량을 주차하여야 합니다.");
+							$("#t").css("color", "red");
+							$("#t").text("\r 미흡한 대처로 힘 스탯이 1감소합니다. ");
+							$("#fo").text("");
+						}
 					}
 				}
 
+				if (i == 5) {
+
+					obj.src = "image/fi" + i + ".jpg";
+					$("#title").text("화재현장 앞");
+
+					if (j == 0) {
+						$('#au1').attr({
+							src : 'audio/fire.mp3',
+							autoplay : "true"
+						});
+						$("#f").text("\r 화재현장에 도착하니 아파트 주민들이 모여 안타까운 표정으로 화재현장을 바라보고 있다. 그 와중에 주민 한명이 나에게로 달려온다.");
+						$("#s").text("\r 아파트 주민1 : 도와주세요 집안에 아직 사람이 갇혀있어요!!");
+						$("#t").text("\r 나 : 걱정하지마시고 위험하니 현장에서 모두 물러나 주시길 바랍니다!");
+						$("#fo").text("\r 동료1 : 불이 너무 커서 건물에 진입할 수가 없어! 우선 화재부터 진압해야겠어");
+
+					}
+
+					if (j == 1) {
+						$("#f").text("\r 건물에 화재가 심각합니다. 하나의 호스로 화재를 진압하기 힘들 것 같습니다. 여러 개의 호스를 연장해야 하는 상황에 처해있습니다. 어떻게 하겠습니까? ");
+						$("#s").text("\r 1. 먼저 헷갈리지 않게 각 호스별로 표식을 해둔다. ");
+						$("#t").text("\r 2. 호스를 혼자 다루기 힘든 경우 바닥에 내려두어 끌어서 효과적으로 호스를 연장한다.");
+						$("#fo").text("");
+
+					}
+
+					if (j == 2) {
+						if (fo == 0 && t == 0 && s == 0) {
+							alert('선택지를 선택해주세요.');
+							j--;
+						} else {
+							i++;
+							if (s == 1) {
+								obj.src = "image/fi" + i + ".jpg";
+								$("#f").text("\r 대원들과 동선이 겹치지 않고 소방호스를 무사히 연장했습니다.불을 진압합니다. ");
+								$("#s").text("\r Tip) 미리 각 호스별로 표식을 해두면 불필요한 부분에 있는 호스에 물을 내보내지 않아 소방용수의 낭비를 방지할 수 있습니다.");
+								$("#t").css("color", "red");
+								$("#t").text("\r 능숙한 대처로 민첩 스탯이 1증가합니다. ");
+								$("#fo").text("");
+							}
+
+							if (t == 1) {
+								obj.src = "image/fi" + i + "s.jpg";
+								$("#f").text("\r 바닥에 어지럽게 펼쳐져있는 호스들이 다른 대원들의 작업을 방해했습니다.. ");
+								$("#s").text("\r Tip) 화재현상같이 급박한 상황에서는 호스와 같이 발에 걸릴 수 있는 물체는 바닥에 내려놓으면 안됩니다. 또 호스를 끌면서 이동할 경우 노즐이 손상될 수 있으므로 항상 조심해야합니다.");
+								$("#t").css("color", "red");
+								$("#t").text("\r 작업에 방해가 되었습니다. 매력 스탯이 1감소합니다. ");
+								$("#fo").text("");
+
+							}
+							i++;
+							j = -1;
+
+						}
+					}
+
+					j++;
+					i--;
+				}
+
+				if (i == 7) {
+
+					if (j == 0) {
+						obj.src = "image/fi5.jpg";
+						$("#f").text("\r 나 : 모두 자리 잡을때까지 소방수 방류하지말고 대기해! ");
+						$("#s").text("\r 동료1 : 여기 노즐의 크기가 너무 커! 한명 도와줘!");
+						$("#t").text("\r 동료2 : 내가 갈게 다른 사람들은 자리에 대기하고 있어!");
+						$("#fo").text("\r 나 : 좋아 소방수 방류해!");
+					}
+
+					if (j == 1) {
+						$('#au1').attr({
+							src : 'audio/rain.mp3',
+							autoplay : "true"
+						});
+
+						obj.src = "image/fi6t.png";
+						$("#f").text("\r 아파트를 집어 삼킬 것 같이 타오르던 불꽃은 점차 그 기세를 누그러뜨렸고 숙달된 소방대원들은 그 기회를 놓치지 않았다.");
+						$("#s").text("\r 동료1 : 됐어 조금만 더! 조금만 더 하면 돼!");
+						$("#t").text("\r 나 : 모두 노즐 놓치지 않게 긴장 풀지마!");
+						$("#fo").text("");
+					}
+
+					if (j == 2) {
+						$("#f").text("\r 불이 어느 정도 진압되어 더 이상 번지지는 않았지만 아직 건물안에 진입하기에는 무리일 것 같다.");
+						$("#s").text("\r 아파트주민1 : 아직 제 남편이 집안에 갇혀있어요 도와주세요!!");
+						$("#t").text("\r 나 : 이거 안되겠어 더이상 지체할 수 없어! 사다리로 진입해야겠어!");
+						$("#fo").text("");
+					}
+
+					if (j == 3) {
+
+						obj.src = "image/fi7.jpg";
+						$("#f").text("\r 화재는 어느 정도 진압되었지만 아직 건물에 진입하기는 어려울 것 같습니다. 사다리를 설치하여 창문으로 진입하여야 합니다. 다음 중 어떻게 사다리를 설치하겠습니까? ");
+						$("#s").text("\r 1. 유리창의 전면, 창문 샤시등에 설치하여 창문으로 신속히 진입할 수 있도록 설치합니다.");
+						$("#t").text("\r 2. 아래쪽에서 사다리를 지지해주는 사람을 1명 배치합니다.");
+						$("#fo").text("\r 3. 대원이 건물에 진입한 이후 통행에 방해를 주지 않기 위해 사다리를 치운다.");
+						i++;
+						j = -2;
+					}
+
+					j++;
+					i--;
+
+				}
+
+				if (i == 8) {
+					if (fo == 0 && t == 0 && s == 0) {
+						alert('선택지를 선택해주세요.');
+						i--;
+					} else {
+						if (s == 1) {
+							obj.src = "image/fi" + i + ".jpg";
+							$("#f").text("\r 창문에 유리를 제거할 때 화염때문에 큰 위험에 쳐할뻔 했습니다.");
+							$("#s").text("\r Tip) 유리창의 전면에 사다리를 설치한 후 유리창을 제거할 때 백드래프트 현상(갑자기 산소가 공급되면 폭풍을 동반한 화염이 분출되는 현상)으로 인해 큰 위험해 쳐할 수 있으니 조심해야 합니다!");
+							$("#t").css("color", "red");
+							$("#t").text("\r 부주의로 인한 민첩 스탯이 1감소합니다. ");
+							$("#fo").text("");
+						}
+						if (t == 1) {
+							obj.src = "image/fi" + i + "s.jpg";
+							$("#f").text("\r 사다리를 설치할 경우 흔들림을 방지하기 위해 반드시 아래쪽에서 1인이 지지하여야 합니다. ");
+							$("#s").css("color", "red");
+							$("#s").text("\r 현명한 대처로 매력 스탯이 1증가합니다. ");
+							$("#t").text("");
+							$("#fo").text("");
+
+						}
+
+						if (fo == 1) {
+							obj.src = "image/fi" + i + "t.jpg";
+							$("#f").text("\r 소방대원이 시민을 구했지만 사다리가 없어 시간이 지체되었습니다!");
+							$("#s").text("\r Tip) 사다리로 건물에 진입을 시도한 경우 시민을 구한 뒤 소방대원은 최초의 위치로 다시 창문으로 탈출해야합니다. 사다리는 절대 치우면 안됩니다!  ");
+							$("#t").css("color", "red");
+							$("#t").text("\r 미흡한 대처로 매력 스탯이 1감소합니다. ");
+							$("#fo").text("");
+
+						}
+					}
+				}
+
+				if (i == 9) {
+
+					if (j == 0) {
+
+						$("#title").text("미니게임! ");
+
+						$("#bu").css("visibility", "hidden");
+						$("#buu").css("visibility", "visible");
+
+						obj.src = "image/fi" + i + ".jpg";
+						$("#f").text("\r 불을 어느 정도 진압한 지금이 건물안으로 들어가기 위한 골든타임입니다! 불이 다시 붙기전에 MOVE 버튼을 반복해서 눌러서 건물안으로 빠르게 이동하세요  ");
+						$("#s").text("");
+						$("#t").text("");
+						$("#fo").text("");
+
+						$("#buu").on("click", function() {
+							if (second == 15 && flag == 1) {
+
+								$("#test").css("visibility", "visible");
+								time = setInterval(function() {//1초에 한번씩 시간 감소와 표기
+									second--;
+									$("#test").text(second);
+									if (second == 0) {
+
+										obj.src = "image/over.png";
+										$("#bu").css("visibility", "visible");
+										$("#bu").text("메인으로");
+										$("#bu").css("margin-left", "88.8%");
+										$("#buu").css("visibility", "hidden");
+										$("#im3").css("visibility", "hidden");
+										$("#im4").css("visibility", "hidden");
+										$("#im5").css("visibility", "hidden");
+										$("#test").css("visibility", "hidden");
+										$("#im6").css("visibility", "hidden");
+										$("#f").text("\r 골든타임을 놓쳐 불이 다시 번졌고 건물안에 진입할 수가 없어졌습니다.. 당신은 생존자를 구출하는데 실패하였습니다. ");
+										i = 100;
+									}
+
+								}, 1000);
+
+								setTimeout(function() {//15초후 게임 종료
+									clearInterval(time);
+								}, 15000);
+								flag = 1;
+							}
+						});
+
+						var a = ladder(second, flag);
+						if (a > 33) {
+							second = 30;
+							i++;
+							j = 0;
+						}
+
+						if (flag == 0) {
+							$('#au1').attr({
+								src : 'audio/game.mp3',
+								autoplay : "true"
+							});
+						}
+
+						flag++;
+						i--;
+					}
+
+					if (j == -1) {
+
+						$('#au1').attr({
+							src : '',
+							autoplay : "true"
+						});
+						obj.src = "image/fi8s.jpg";
+						$("#f").text("\r 나 : 좋아 사다리가 설치됐으니 내가 건물안으로 진입할게! ");
+						$("#s").text("\r 동료1 : 내가 사다리를 잡고 있을테니 얼른 다녀오라고 저번처럼 위험한 상황까지 무리하지 말고 알았어?");
+						$("#t").text("\r 나 : 걱정마 우리집 대출금 갚으려면 아직 10년은 더 일해야해. ㅠㅠ");
+						$("#fo").text("\r 동료1 : 그래 그거 다 갚기전까지 죽을 생각하면 안되지 늦기전에 어서가! 나머지 대원들은 불이 번지지 않도록 막는다!");
+						j++;
+						i--;
+					}
+				}
+
+				if (i == 10) {
+
+					$("#title").text("아파트 내부 ");
+					$("#bu").css("visibility", "visible");
+					$("#buu").css("visibility", "hidden");
+					obj.src = "image/fi" + i + ".jpg";
+					$("#test").css("visibility", "hidden");
+					$("#im5").css("visibility", "hidden");
+
+					if (j == 0) {
+
+						$('#au1').attr({
+							src : 'audio/bgm3.mp3',
+							autoplay : "true",
+							loop : "2"
+						});
+
+						$("#f").text("\r 유리창을 부수고 무사히 건물안으로 진입했지만 연기가 가득해서 한치 앞도 보이지가 않습니다. ");
+						$("#s").text("\r 나 : 무엇을 먼저 해야하지..? ");
+					}
+
+					if (j == 1) {
+						$("#f").text("\r 연기때문에 앞이 보이지 않습니다.. 무엇을 먼저 하겠습니까?");
+						$("#s").text("\r 1. 소리를 질러 생존자의 위치를 파악한다.");
+						$("#t").text("\r 2. 공기호흡기를 장착하고 안면마스크를 착용한다.");
+						$("#fo").text("");
+					}
+
+					if (j == 2) {
+						if (fo == 0 && t == 0 && s == 0) {
+							alert('선택지를 선택해주세요.');
+							j--;
+						} else {
+							i++;
+							j = -1;
+							if (s == 1) {
+								obj.src = "image/fi" + i + ".jpg";
+								$("#f").text("\r 소리를 지를때 마다 호흡으로 연기가 들어가 임무 수행에 지장이 생겼습니다!");
+								$("#s").text("\r Tip) 연기가 자욱한 화재현장에 진입 시 반드시 안면마스크를 써야하며 마스크를 쓰지 않을 시 일산화탄소 중독이나 연기의 열로 인한 기도의 화상등의 큰 위험에 쳐할 수 있습니다!");
+								$("#t").css("color", "red");
+								$("#t").text("\r 미흡한 대처로 인한 민첩 스탯이 1감소합니다. ");
+
+							}
+							if (t == 1) {
+								obj.src = "image/fi" + i + "s.jpg";
+								$("#f").text("\r 무사히 안면마스크를 착용했습니다. 이제 생존자를 찾아야합니다.");
+								$("#s").text("\r Tip) 생존자의 위치를 파악하는 것도 중요하지만 안면마스크를 쓰지 않고 현장에서 활동할 경우 기도에 화상을 입을수 있으므로 안면마스크 착용이 선행되어야 합니다.");
+								$("#t").css("color", "red");
+								$("#t").text("\r 미흡한 대처로 매력 스탯이 1감소합니다. ");
+
+							}
+						}
+					}
+
+					j++;
+					i--;
+
+				}
+
+				if (i == 11) {
+					obj.src = "image/fi" + (i - 1) + ".jpg";
+
+					if (j == 0) {
+						$("#f").text("\r 아직도 안개가 자욱해서 한치 앞도 보이지가 않습니다. 생존자의 위치를 파악하기 위해 소리쳐봅니다.");
+						$("#s").text("\r 나 : 어디계신가요!! 위치를 알려주시면 금방 달려가겠습니다!");
+						$("#t").text("");
+
+					}
+
+					if (j == 1) {
+						$("#f").text("\r 목이 터져라 소리를 질러보지만 아무 소리도 들리지 않습니다. 다른방을 뒤져보고 싶지만 불길이 거세 진입할 수가 없습니다.");
+						$("#s").text("\r 나 : 더이상 시간을 지체 할 수 없는데.. 제 말이 들리면 대답해주세요!");
+
+					}
+
+					if (j == 2) {
+						$("#f").text("\r 그 순간 작은방에서 희미하게 누군가 소리치는 소리가 들렸습니다.");
+						$("#s").text("\r 시민 : 여기에요... 살려주세요...!");
+						i++;
+						j = -1;
+
+					}
+
+					j++;
+					i--;
+				}
+
+				if (i == 12) {
+
+					obj.src = "image/fi" + i + ".jpg";
+
+					if (j == 0) {
+						$('#au1').attr({
+							src : 'audio/bgm4.mp3',
+							autoplay : "true"
+						});
+						$("#f").text("\r 달려간 그 곳에는 불길 때문에 벗어나지 못하는 시민이 있었고 신속하게 불을 진압한 뒤 시민에게 안면마스크를 씌어 무사히 방밖으로 탈출시켰습니다. ");
+						$("#s").text("\r 나 : 조금만 참으세요! 곧 안전한 곳으로 데려다 드리겠습니다.");
+						$("#t").text("");
+						$("#fo").text("");
+					}
+
+					if (j == 1) {
+						$("#f").text("\r 창틀로 다가가자 다른 소방대원들이 우리를 기다리고 있었다. 동료 소방대원에게 시민을 인계하고 안도의 숨을 내쉬고 있을 때 동료가 말을건다.");
+						$("#s").text("\r 동료2 : 수고했어 어디 다친곳은 없고?");
+						$("#t").text("\r 나 : 웬일이냐 내 걱정을 다 해주고 어디 아픈거 아니야?");
+						$("#fo").text("\r 동료 : 하여튼 걱정을 해줘도 난리야 사다리 치워야겠다. 넌 여기 계속있어라 ㅋㅋㅋㅋ");
+					}
+
+					if (j == 2) {
+						$("#f").text("\r 나 : 야 진짜 치우냐!!");
+						$("#s").text("\r 동료와 짧게 장난을 주고 받고 사다리를 타고 내려와 주변을 살핀다.");
+						$("#t").text("");
+						$("#fo").text("");
+					}
+
+					if (j == 3) {
+						$("#f").text("\r 나 : 시민분은 어때?");
+						$("#s").text("\r 동료1 : 넌 내려오자마자 남 걱정이냐.. 걱정마 다행히도 크게 문제 없으셔 그래도 혹시 몰라서 구급차를 부르긴 했지만");
+						i++;
+						j = -1;
+					}
+					i--;
+					j++;
+				}
+
+				if (i == 13) {
+					$("#title").text("화재현장 앞");
+					obj.src = "image/fi" + i + ".jpg";
+
+					if (j == 0) {
+						$("#f").text("\r 말이 끝나기 무섭게 구급차가 달려와 환자분을 실어간다. 한 여성분이 구급차에 동승하려다 내게로 달려온다. ");
+						$("#s").text("\r 아파트 주민1 : 감사하다는 인사를 드리는걸 깜빡할뻔했네요 제 남편을 구해주셔서 정말 감사합니다.");
+
+					}
+
+					if (j == 1) {
+						$("#f").text("\r 감사인사를 건네는 여성의 눈가에 눈물이 가득하다. 아마 혹시모를 상황에 대한 걱정이 많으셨나보다.");
+						$("#s").text("\r 나 : 아니에요 이게 제 일인걸요 아마 남편분은 크게 문제 없으실겁니다. 이제 걱정하지 않으셔도 됩니다.");
+						$("#t").text("\r 아파트 주민1 : 고마워요.. 정말..");
+					}
+
+					if (j == 2) {
+						$("#f").text("\r 여성분은 감사인사를 건네고 다시 구급차를 향해 달려간다.");
+						$("#s").text("");
+						$("#t").text("");
+						i++;
+						j = -1;
+					}
+
+					i--;
+					j++;
+				}
+
+				if (i == 14) {
+
+					if (j == 0) {
+						obj.src = "image/fi" + i + ".jpg";
+						$("#f").text("\r 아파트를 집어삼킬 것 같던 불꽃도 어느새 진압되었고 다른 대원들은 주변 정리를 실시하고있다.");
+						$("#s").text("\r 지휘관 : 자 다들 정리마쳤으면 이만 돌아가자고");
+						$("#t").text("\r 대원들 : 네!");
+					}
+
+					if (j == 1) {
+						$("#f").text("\r 정리를 마치고 대원들은 피곤한 몸을 이끌고 차량을 향해 걸어간다. ");
+						$("#s").text("\r 동료1 : 아까 내가 그 무거운 노즐을 혼자들고 불을 다 꺼버린거 봤지?");
+						$("#t").text("\r 동료2 : 하.. 또 시작이다ㅋㅋㅋㅋ 그러다 놓칠뻔했던거는 왜 빼먹냐");
+						$("#fo").text("\r 동료1 : 아니 그건.. 야 안오고 뭐해! ");
+
+					}
+
+					if (j == 2) {
+						$("#f").text("\r 나 : 어~ 금방가 괜히 할말 없으니까 나 찾는 척 하기는ㅋㅋㅋㅋㅋㅋ ");
+						$("#s").text("\r 동료1 : 아니거든!");
+						$("#t").text("\r 얼굴이 새빨개진 동료가 차량을 향해 달려간다. 오늘 하루도 힘든 하루였지만 소중한 생명을 구했다는 사실에 피로가 싹 날아갈듯 하다. 누군가 나에게 다시한번 직업을 선택할 기회를 준다고 해도 소방관을 선택하지 않을까?");
+						$("#fo").text("");
+						i++;
+						j = -1;
+					}
+
+					i--;
+					j++;
+				}
+
+				if (i == 15) {
+
+					$("#title").text("\r \r \r \r \r End");
+					$('#au1').attr({
+						src : 'audio/end.mp3',
+						autoplay : "true"
+					});
+
+					obj.src = "image/end.jpg";
+					$("#f").text("\r 감사합니다.");
+					$("#s").text("");
+					$("#t").text("");
+					$("#fo").text("");
+				}
+
+				s = 0;
+				fo = 0;
+				t = 0;
 				i++;
+
 			});
 
-			$("#f").on("click", function() {
-				if (i > 4) {
-					$("#f").css("color", "red");
-					$("#s").css("color", "white");
+			$("#fo").on("click", function() {//선택지 선택시 텍스트의 색 변경 파트
+				if (i == 4 || i == 5 || i == 8 || i == 10) {
+					$("#fo").css("color", "red");
 					$("#t").css("color", "white");
+					$("#s").css("color", "white");
 
-					f = 1;
 					s = 0;
 					t = 0;
+					fo = 1;
 				}
 			});
 
 			$("#s").on("click", function() {
-				if (i > 3) {
+				if (i == 4 || i == 5 || i == 8 || i == 10) {
 					$("#s").css("color", "red");
-					$("#f").css("color", "white");
+					$("#fo").css("color", "white");
 					$("#t").css("color", "white");
 
 					s = 1;
-					f = 0;
+					fo = 0;
 					t = 0;
 				}
 			});
 
 			$("#t").on("click", function() {
-				if (i > 3) {
+				if (i == 4 || i == 5 || i == 8 || i == 10) {
 					$("#t").css("color", "red");
 					$("#s").css("color", "white");
-					$("#f").css("color", "white");
+					$("#fo").css("color", "white");
 
 					s = 0;
-					f = 0;
+					fo = 0;
 					t = 1;
 				}
 			});
@@ -95,14 +650,49 @@
 
 	<style>
 		#im {
-			margin-top: 2%;
+			margin-top: 5%;
 			width: 65%;
+		}
+
+		#im2 {
+			position: absolute;
+			margin-left: 20%;
+			margin-top: 24.7%;
+			visibility: hidden;
+		}
+
+		#im3 {
+			position: absolute;
+			margin-left: 22%;
+			margin-top: 24.7%;
+			visibility: hidden;
+		}
+
+		#im4 {
+			position: absolute;
+			margin-left: 24%;
+			margin-top: 24.7%;
+			visibility: hidden;
+		}
+
+		#im5 {
+			position: absolute;
+			margin-left: 56.5%;
+			margin-top: 24%;
+			visibility: hidden;
+		}
+
+		#im6 {
+			position: absolute;
+			margin-left: 56.5%;
+			margin-top: 23%;
+			visibility: hidden;
 		}
 
 		#bu {
 			position: absolute;
-			margin-left: 93.3%;
-			margin-top: -1.7%;
+			margin-left: 91.3%;
+			margin-top: -2.5%;
 			border-width: 2px;
 			border-color: white;
 			border-radius: 7px;
@@ -110,17 +700,47 @@
 			color: white;
 		}
 
+		#buu {
+			position: absolute;
+			margin-left: 74%;
+			margin-top: 28%;
+			border-width: 2px;
+			border-color: white;
+			border-radius: 7px;
+			visibility: hidden;
+		}
+
+		#test {
+			position: absolute;
+			color: white;
+			margin-left: 47%;
+			margin-top: 3%;
+			visibility: hidden;
+		}
+
+		#title {
+			position: absolute;
+			color: white;
+			margin-left: 43%;
+			margin-top: -4%;
+			visibility: hidden;
+		}
+
 		#te {
-			margin-top: 2%;
+			margin-top: 3%;
 			margin-left: 2%;
 			border-color: white;
 			color: white;
 			border-radius: 7px;
 			border-style: inset;
 			border-width: 1px;
-			font-size: 18px;
+			font-size: 17px;
 			width: 95%;
-			height: 100px;
+			height: 130px;
+		}
+
+		html {
+			overflow-y: hidden;
 		}
 
 	</style>
@@ -128,17 +748,33 @@
 	<body bgcolor="#000000">
 
 		<div data-role="content" data-position="fixed">
+			<h1 id="test">15</h1>
+			<h2 id="title">15</h2>
+			<img id="im2" width="30px" height="32px"  src="image/move.jpg">
+			<img id="im3" width="30px" height="30px"  src="image/move2.jpg">
+			<img id="im4" width="20px" height="31px"  src="image/move3.jpg">
+			<img id="im5" width="20px" height="31px"  src="image/move4.png">
+			<img id="im6" width="20px" height="31px"  src="image/move5.png">
+
+			<img id="buu" width="50px" height="40px"  src="image/move.png">
+			<audio id="au1" src"" style="visibility: hidden"></audio>
+			<audio id="au2" src"" style="visibility: hidden"></audio>
+
 			<img id="im" style="margin-left: auto; margin-right: auto; display: block;" src="image/fi.jpg">
 
 			<div id="te">
 
 				<h4 id="f" style="margin-top: 0.5%;">&nbsp;안녕하세요 당신은 화재 및 재난, 재해를 예방하고 대응하며 위급한 상황으로 부터 구조 구급활동을 통해 국민의 재산과 신체를 보호하는 것을 주임무로 하는 소방관입니다. &#10;여러분은 지금부터 소방관의 하루를 체험하게 됩니다. 상황에 맞는 선택지를 선택하여 재밌는 체험을 해보시길 바랍니다. </h4>
-				<h4 id="s" style="margin-top: -1.5%;"></h4>
-				<h4 id="t" style="margin-top: -1.5%;"></h4>
+
+				<h4 id="s" style="margin-top: -2.5%;"></h4>
+				<h4 id="t" style="margin-top: -2.5%;"></h4>
+				<h4 id="fo" style="margin-top: -2.5%;"></h4>
+
 			</div>
 			<button id="bu">
 				다음
 			</button>
+
 		</div>
 	</body>
 </html>
