@@ -5,10 +5,17 @@
 		<meta id="viewport" name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
 
 	</head>
-
-	<script src="//code.jquery.com/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+	
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	
 	<script>
 		$(document).ready(function() {
+
+			$("#dialog1").dialog({
+				autoOpen : false
+			});
 
 			var i = 2;
 			var f = 0;
@@ -90,7 +97,11 @@
 				}
 			});
 
+			$("#hint").on("click", function() {
+				$("#dialog1").dialog("open");
+			});
 		});
+
 	</script>
 
 	<style>
@@ -123,6 +134,44 @@
 			height: 100px;
 		}
 
+		#hint {
+			position: absolute;
+			margin-left: 2%;
+			margin-top: -41%;
+			border-width: 2px;
+			border-color: white;
+			border-radius: 7px;
+			background-color: black;
+			color: white;
+		}
+
+		#hint_num {
+			position: absolute;
+			margin-left: 10%;
+			margin-top: -38.5%;
+			background-color: black;
+			color: white;
+		}
+
+		#hint_img {
+			background-color: black;
+			color: white;
+			width: 150px;
+			height: 65px;
+		}
+
+		#dialog {
+			margin-left: 0%;
+			margin-top: -41%;
+			background-color: white;
+			color: black;
+			width: 150px;
+			height: 65px;
+			border-width: 2px;
+			border-color: white;
+			border-radius: 7px;
+		}
+
 	</style>
 
 	<body bgcolor="#000000">
@@ -139,6 +188,19 @@
 			<button id="bu">
 				다음
 			</button>
+
+			<button id="hint"><img id="hint_img" class="btn-img" src="image/hint.jpg">
+			</button>
+			<p id="hint_num">
+				3/3
+			</p>
+
 		</div>
+		<div id="dialog1" title="대화상자">
+			<p>
+				Message
+			</p>
+		</div>
+
 	</body>
 </html>

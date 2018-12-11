@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta charset="utf-8">
-	<meta id="viewport" name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta id="viewport" name="viewport" content=target-densitydpi="320" />
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
@@ -67,6 +67,21 @@
 			overflow: hidden;
 		}
 	</style>
+	
+	<script type="text/javascript">
+// Detect whether device supports orientationchange event, otherwise fall back to
+// the resize event.
+var supportsOrientationChange = "onorientationchange" in window,
+    orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+
+window.addEventListener(orientationEvent, function() {
+    
+      document.getElementById('portrait').style.display = 'none';
+      document.getElementById('landscape').style.display = '';
+    
+}, false);
+</script>
+
 
 	<script>
 		$(document).ready(function() {
