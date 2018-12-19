@@ -4,7 +4,6 @@ var flag="false";
 // 데이터베이스 생성 및 오픈
 function openDB(){
    db = window.openDatabase('id', '1.0', '회원정보DB', 1024*1024); 
-   console.log('1_DB 생성...'); 
 } 
 
 // 테이블 생성 트랜잭션 실행
@@ -12,14 +11,23 @@ function createTable() {
    db.transaction(function(tr){
    var createSQL = 'create table if not exists info(id text, pw text)';       
    tr.executeSql(createSQL, [], function(){
-     		console.log('2_1_테이블생성_sql 실행 성공...');        
-	   }, function(){
-	      console.log('2_1_테이블생성_sql 실행 실패...');            
+     		
+	   }, function(){        
 	   });
 	   }, function(){
-	      console.log('2_2_테이블 생성 트랜잭션 실패...롤백은 자동');
 	   }, function(){
-	      console.log('2_2_테이블 생성 트랜잭션 성공...');
+     });
+ }
+ 
+ function createTable2() {
+   db.transaction(function(tr){
+   var createSQL = 'create table if not exists scenario(job text, part text, explain text, si text, si2 text, si3 text, picture text )';       
+   tr.executeSql(createSQL, [], function(){
+     		
+	   }, function(){        
+	   });
+	   }, function(){
+	   }, function(){
      });
  }
  
@@ -44,6 +52,41 @@ function createTable() {
 		   $("#dialog2").dialog("open"); 
 		   alert('빈칸을 모두 채워주세요.');    
 		    	
+		}
+    });      
+ }
+ 
+ function insert2(){ 
+    db.transaction(function(tr){
+  		var a = $('#si').val();
+  		var b = $('#si1').val();
+  		var c = $('#si2').val();
+  		var d = $('#si3').val();
+  		var e = $('#si4').val();
+  		var f = $('#si5').val();
+  		var g = $('#si6').val();
+  		
+  		if(!(a=="" || b=="" || c=="" || g=="")){
+  		var insertSQL = 'insert into scenario(job, part, explain, si, si2, si3, picture) values(?, ?, ?, ?, ?, ?, ?)';      
+     	tr.executeSql(insertSQL, [a, b, c, d, e, f, g], function(tr, rs){    
+	      	$("#dialog6").dialog("open");	       
+	   		$('#si').val('');      
+	   		$('#si1').val('');      
+	   		$('#si2').val('');      
+	   		$('#si3').val('');      
+	   		$('#si4').val('');      
+	   		$('#si5').val('');      
+	   		$('#si6').val('');      
+
+		}, function(tr, err){
+				alert('DB오류 ' + err.message + err.code);
+			}
+		);
+		}
+		else{
+		   $("#dialog5").dialog("open");		  
+		   $("#dialog7").dialog("open"); 
+ 
 		}
     });      
  }
@@ -81,4 +124,40 @@ function select(){
 	 }
 	    
    });         
-} 
+}
+
+function select2(){
+   db.transaction(function(tr){
+	 var selectSQL = 'select id, pw from info where id=? and pw=?';
+	 var id = $('#ID').val();
+  	 var pw = $('#PW').val();        
+ 
+  	 
+  	 if(!(id=="" || pw=="")){
+  	 
+  	 tr.executeSql(selectSQL, [id,pw], function(tr, rs){
+  	   
+  	 if(rs.rows.length>0){
+  	   $('#ID').val('');
+  	   $('#PW').val('');   
+  	   location.href = "main.html";
+  	  
+  	 }
+	 else{
+	 alert('아이디와 비밀번호를 다시 한번 확인해주세요'); // 로그인 실패
+	  $('#ID').val('');
+  	  $('#PW').val('');    
+	 }    
+	 });
+	 }	
+     
+     
+     
+     else{
+		   alert('아이디와 비밀번호를 다시 한번 확인해주세요');    
+		    	
+	 }
+	    
+   });         
+}
+

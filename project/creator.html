@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta id="viewport" name="viewport" content=target-densitydpi="760" />
+	</head>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	<script src="db.js"></script>
+
+	<script>
+		$(document).ready(function() {
+
+			var i = 1;
+			var s = 0;
+			var t = 0;
+			var fo = 0;
+			var hintCount = 3;
+
+			openDB();
+			createTable2();
+
+			$("#dialogHint0").dialog({
+				autoOpen : false
+			});
+
+			$("#dialogHint1").dialog({
+				autoOpen : false
+			});
+
+			$("#fail").dialog({
+				autoOpen : false
+			});
+
+			$("#fail2").dialog({
+				autoOpen : false
+			});
+
+			$("#hint").on("click", function() {
+				if (hintCount >= 1) {
+
+					hintCount = select6(i, hintCount);
+
+				} else if (hintCount == 0) {
+					$("#dialogHint0").dialog("open");
+				}
+			});
+
+			$("#bu").on("click", function() {//다음 버튼을 눌러서 다음 상황으로 이동
+
+				$("#s").css("color", "white");
+				$("#t").css("color", "white");
+				$("#fo").css("color", "white");
+
+				if (i == 1) {
+					select2("creator", i);
+				}
+
+				if (i == 2) {
+					select2("creator", i);
+				}
+
+				if (i == 3) {
+					select2("creator", i);
+				}
+
+				if (i == 4) {
+					select2("creator", i);
+				}
+
+				if (i == 5) {
+					select2("creator", i);
+				}
+
+				s = 0;
+				t = 0;
+				fo = 0;
+				i++;
+
+			});
+
+			$("#fo").on("click", function() {//선택지 선택시 텍스트의 색 변경 파트
+				$("#fo").css("color", "red");
+				$("#t").css("color", "white");
+				$("#s").css("color", "white");
+
+				s = 0;
+				t = 0;
+				fo = 1;
+
+			});
+
+			$("#s").on("click", function() {
+
+				$("#s").css("color", "red");
+				$("#fo").css("color", "white");
+				$("#t").css("color", "white");
+
+				s = 1;
+				fo = 0;
+				t = 0;
+
+			});
+
+			$("#t").on("click", function() {
+
+				$("#t").css("color", "red");
+				$("#s").css("color", "white");
+				$("#fo").css("color", "white");
+
+				s = 0;
+				fo = 0;
+				t = 1;
+
+			});
+
+		});
+	</script>
+
+	<style>
+		#hint {
+			position: absolute;
+			margin-left: 2%;
+			margin-top: -49%;
+			border-width: 2px;
+			border-color: white;
+			border-radius: 7px;
+			background-color: black;
+			color: white;
+			border-width: 1px;
+		}
+
+		#hint_num {
+			position: absolute;
+			margin-left: 13%;
+			margin-top: -47%;
+			background-color: black;
+			color: white;
+			font-size: 11px;
+		}
+
+		#hint_img {
+			background-color: black;
+			color: white;
+			width: 120px;
+			height: 45px;
+		}
+
+		#im {
+			margin-top: 5%;
+			width: 65%;
+		}
+
+		#bu {
+			position: absolute;
+			margin-left: 91.3%;
+			margin-top: -2.5%;
+			border-width: 2px;
+			border-color: white;
+			border-radius: 7px;
+			background-color: black;
+			color: white;
+		}
+
+		#but {
+			position: absolute;
+			margin-left: 2%;
+			margin-top: -43%;
+			border-color: #FFFFFF;
+			background-color: #000000;
+			border-radius: 5px;
+			border-width: 1px;
+			width: 135px;
+			height: 50px;
+		}
+
+		#te {
+			margin-top: 3%;
+			margin-left: 2%;
+			border-color: white;
+			color: white;
+			border-radius: 7px;
+			border-style: inset;
+			border-width: 1px;
+			font-size: 17px;
+			width: 95%;
+			height: 130px;
+		}
+
+		html {
+			overflow-y: hidden;
+		}
+
+	</style>
+
+	<body bgcolor="#000000">
+
+		<div data-role="content" data-position="fixed">
+
+			<img id="im" style="margin-left: auto; margin-right: auto; display: block;" src="image/creator.jpg">
+
+			<div id="te">
+
+				<h4 id="f" style="margin-top: 0.5%;">&nbsp;안녕하세요 당신은 크리에이터 입니다. ➸ </h4>
+				<h4 id="s" style="margin-top: -2.5%;"></h4>
+				<h4 id="t" style="margin-top: -2.5%;"></h4>
+				<h4 id="fo" style="margin-top: -2.5%;"></h4>
+
+			</div>
+
+			<button id="but">
+				<img style="margin-top: 4px; height: 42px;" width="65px" height="50px"  src="image/save.png">
+			</button>
+
+			<button id="hint"><img id="hint_img" class="btn-img" src="image/hint.jpg">
+			</button>
+			<p id="hint_num">
+				3/3
+			</p>
+
+			<div id="dialogHint0" title="힌트상자">
+				<h3>더 이상의 힌트가 없습니다.</h3>
+			</div>
+
+			<div id="fail" title="실패">
+				<h3 style="text-align: center">힌트가 없습니다.</h3>
+			</div>
+
+			<div id="fail2" title="실패">
+				<h3 style="text-align: center">더이상 스토리가 없습니다.</h3>
+			</div>
+
+			<div style="text-align: center;" id="dialogHint1" title="힌트상자">
+
+				<h4 style="border: none; font-size: 20px; " id="hintbox"></h4>
+			</div>
+
+			<button id="bu">
+				다음
+			</button>
+
+		</div>
+
+	</body>
+</html>

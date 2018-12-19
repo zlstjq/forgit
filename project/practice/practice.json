@@ -1,0 +1,191 @@
+var express = require('express');
+var app = express();
+var session = require('express-session');
+var cors = require('cors');
+var mysql = require('mysql');
+var dbconfig = require('./config/database.js');
+var connection = mysql.createConnection(dbconfig);
+var fs = require('fs');
+var url = require('url');
+var multer = require('multer');
+var querystring = require('querystring');
+var bodyParser = require('body-parser');
+app.set('views', __dirname);
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+
+//starting server
+
+var server = app.listen(8080, function() {
+console.log("Express server has started on port 8080");
+});
+
+app.use(express.static('public'));
+
+app.use(cors());
+// 타 도메인에서 접근을 해서 우리 서버에서 접근 하도록 만든것
+
+app.use(bodyParser.urlencoded({
+//
+extended : false
+}));
+app.use(bodyParser.json());
+app.use(session({
+secret : 'session keyboard set',
+resave : false,
+saveUninitialized : true
+}));
+
+/* 회원가입 + ID 중복체크 */
+app.post('/signUp', function(req, res) {
+var id = req.body.id;
+var password = req.body.password;
+//get 방식이면 query.id 로 받는거고 post 방식 사용시에는 body.id 이런식으로 받아야 됨
+console.log(id);
+connection.query('select * from user_data where id = ?', [id], function(err, result) {
+if (err) {
+console.error(err);
+throw err;
+}
+
+if (id.length == 0) {
+console.log('insert id');
+res.json('insert id');
+
+} else if (result.length > 0) {
+console.log('already exist');
+res.json('already exist');
+
+} else {
+connection.query('insert into user_data values(?,?)', [id, password], function(err, result) {
+if (err) {
+console.log(err);
+throw err;
+}
+if (password.length > 0) {
+console.log('insert success');
+res.json('insert success');
+} else {
+console.log('insert password');
+res.json('insert password');
+}
+});
+}
+});
+});
+
+// 로그인
+
+app.post('/login', function(req, res) {
+var id = req.body.id;
+var password = req.body.password;
+//get 방식이면 query.id 로 받는거고 post 방식 사용시에는 body.id 이런식으로 받아야 됨
+
+res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+connection.query('select id from user_data where id = ?', [id], function(err, result) {
+if (err) {
+console.error(err);
+throw err;
+}
+if (id.length == 0) {
+console.log('insert id');
+res.json('insert id');
+} else if (result.length == 0) {
+console.log('Invalid id');
+res.json('Invalid id');
+} else if (result.length > 0) {
+
+connection.query('select * from user_data where password = ?', [password], function(err, result) {
+if (err) {
+console.error(err);
+throw err;
+}
+if (password == 0) {
+console.log('insert password');
+res.json('insert password');
+} else if (result.length == 0) {
+console.log('wrong password');
+res.json('wrong password');
+} else if (result[0].password == password) {
+req.session.user_id = result[0].id;
+req.session.save();
+console.log('login complete');
+res.json('login complete');
+}
+
+});
+}
+
+});
+
+});
+// 로그 아웃
+app.post('/logout', function(req, res) {
+if (req.body.logout) {
+req.session.destroy();
+res.json('logout');
+}
+});
+
+// //로그아웃 시 어디까지 진행 했는지 데이터 저장하기
+// app.post('/main', function(req, res) {
+// var select = req.body.select;
+// var img = req.body.img;
+// var content = req.body.content;
+// var id = req.session.user_id;
+//
+// if (select == 'savegame') {
+// connection.query('update game_status set img = ?, content = ? where id = ?', [img, content, id], function(err, result) {
+// if (err) {
+// console.error(err);
+// throw err;
+// } else {
+// res.json(result);
+// }
+//
+// });
+// }
+// });
+//
+// //로그인 후 메인 화면 이어하기 선택시 저장된 데이터 받기
+// app.get('/main', function(req, res) {
+// var select = req.query.select;
+// var id = req.session.user_id;
+// if (select == 'loadgame') {
+// connection.query('select * from game_status, user_stat where id = ?', [id], function(err, result) {
+//
+// if (err) {
+// console.error(err);
+// throw err;
+// } else {
+// res.json(result);
+// }
+//
+// });
+// }
+// });
+
+// // 사진 업로드하기
+//
+// app.post('/uploadImg', uploadUser.single('photo'), function(req, res) {
+//
+// });
+//
+// // 내용 업로드 하기
+//
+// app.post('upload', function(req, res) {
+// var img = req.body.img;
+// var content = req.body.content;
+// var id = req.session.user_id;
+//
+// connection.query('insert into provider_data values(?,?,?)', [img, content, id], function(err, result) {
+// if (err) {
+// console.error(err);
+// throw err;
+// }
+// if (result) {
+//
+// res.send('Uploaded! : ' + req.file);
+// }
+// });
+// });

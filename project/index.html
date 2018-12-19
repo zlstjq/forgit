@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta charset="utf-8">
-	<meta id="viewport" name="viewport" content=target-densitydpi="320" />
+	<meta id="viewport" name="viewport" content=target-densitydpi="760" />
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
@@ -12,64 +12,86 @@
 			margin-left: auto;
 			margin-right: auto;
 		}
-		
-		label{
+		label {
 			color: white;
 		}
-
 		.ef {
 			border-radius: 7px;
 			width: 155px;
 			height: 45px;
 			background-color: white;
 		}
-
 		.efff {
 			border-radius: 7px;
 			width: 120px;
 			height: 45px;
 			background-color: white;
 		}
-
 		.eff {
 			border-radius: 7px;
 			width: 180px;
 			height: 30px;
 			background-color: white;
 		}
-
 		img {
 			margin-top: 3%;
 			margin-bottom: 3%;
 			border-radius: 10px;
 		}
-		
-		#im{
-			
+		#im {
 			margin-top: 15px;
 		}
-
 		.te {
 			border-radius: 7px;
 			font-size: 30px;
 			width: 230px;
 			height: 40px;
 		}
-		
-		#te{
+		#te {
 			margin-left: 5px;
 		}
-		
-		body, html{
+		body, html {
 			background-repeat: no-repeat;
 			background-size: cover;
-			height : 100%;
+			height: 100%;
 			overflow: hidden;
 		}
 	</style>
 
 	<script>
 		$(document).ready(function() {
+
+			function requestSignUp() {
+				$.ajax({
+
+					url : 'http://18.208.57.18:8080/signUp',
+					dataType : 'json',
+					type : 'POST',
+					data : {
+						'id' : $('#ID2').val(),
+						'password' : $('#PW2').val()
+					},
+					success : function(result) {
+						console.log(result);
+						if (result) {
+							if (result == 'insert success')
+								$("#sig").dialog("open");
+							if (result == 'already exist') {
+								$("#sig2").dialog("open");
+							}
+							if (result == 'insert id') {
+								$("#sig3").dialog("open");
+							}
+							if (result == 'insert password') {
+								$("#sig4").dialog("open");
+							}
+						}
+					},
+					fail : function(err) {
+						console.log(err);
+					}
+				});
+			}
 
 			openDB();
 			createTable();
@@ -78,8 +100,72 @@
 				autoOpen : false, //자동으로 열리지않게
 			});
 
+			$("#sig").dialog({
+				autoOpen : false, //자동으로 열리지않게
+			});
+
+			$("#sig2").dialog({
+				autoOpen : false, //자동으로 열리지않게
+			});
+
+			$("#sig3").dialog({
+				autoOpen : false, //자동으로 열리지않게
+			});
+
+			$("#sig4").dialog({
+				autoOpen : false, //자동으로 열리지않게
+			});
+
+			$("#log").dialog({
+				autoOpen : false, //자동으로 열리지않게
+			});
+
+			$("#log2").dialog({
+				autoOpen : false, //자동으로 열리지않게
+			});
+
+			$("#log3").dialog({
+				autoOpen : false, //자동으로 열리지않게
+			});
+
+			$("#log4").dialog({
+				autoOpen : false, //자동으로 열리지않게
+			});
+
 			$("#login").on("click", function() {
-				select();
+				$.ajax({
+					url : 'http://18.208.57.18:8080/login',
+					dataType : 'json',
+					type : 'POST',
+					data : {
+						'id' : $('#ID').val(),
+						'password' : $('#PW').val()
+					},
+					success : function(result) {
+						if (result) {
+							if (result == 'wrong password')
+								$("#log2").dialog("open");
+							if (result == 'Invalid id') {
+								$("#log").dialog("open");
+							}
+							if (result == 'insert id') {
+								$("#log3").dialog("open");
+							}
+							if (result == 'insert password') {
+								$("#log4").dialog("open");
+							}
+							if (result == 'pro') {
+								location.href = "main.html";
+							}
+							if (result == 'nomal') {
+								location.href = "main2.html";
+							}
+						}
+					},
+					fail : function(err) {
+						console.log(err);
+					}
+				});
 			});
 
 			$("#sign").on("click", function() {
@@ -91,19 +177,69 @@
 
 			});
 
+			$("#dialog3").dialog({
+				autoOpen : false, //자동으로 열리지않게
+
+			});
+
 			$("#nor").on("click", function() {
 				$("#dialog").dialog("close");
 				$("#dialog2").dialog("open");
 			});
 
 			$("#ok").on("click", function() {
-				insert();
+				requestSignUp();
 				$("#dialog2").dialog("close");
-			})
+			});
 
 			$("#no").on("click", function() {
 				$("#dialog2").dialog("close");
-			})
+			});
+
+			$("#con").on("click", function() {
+				$("#dialog").dialog("close");
+				$("#dialog3").dialog("open");
+			});
+
+			$("#okk").on("click", function() {
+				var d = $("#au").val();
+				$.ajax({
+
+					url : 'http://18.208.57.18:8080/signUp',
+					dataType : 'json',
+					type : 'POST',
+					data : {
+						'id' : $('#ID3').val(),
+						'password' : $('#PW3').val()
+					},
+					success : function(result) {
+						console.log(result);
+						if (result) {
+							if (result == 'insert success') {
+								$("#sig").dialog("open");
+								$("#dialog3").dialog("close");
+							}
+							if (result == 'already exist') {
+								$("#sig2").dialog("open");
+							}
+							if (result == 'insert id') {
+								$("#sig3").dialog("open");
+							}
+							if (result == 'insert password') {
+								$("#sig4").dialog("open");
+							}
+						}
+					},
+					fail : function(err) {
+						console.log(err);
+					}
+				});
+
+			});
+
+			$("#noo").on("click", function() {
+				$("#dialog3").dialog("close");
+			});
 		});
 	</script>
 </head>
@@ -176,36 +312,107 @@
 	</div>
 
 	<div style="background-color: #F6F6F6" id="dialog2" title="회원가입">
-		<table>
-			<tr>
-				<td><label for="ID2">ID </label></td>
-				<td>
-				<input type="text" id="ID2" name="ID2" placeholder="ID">
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-			</tr>
-			<tr>
-				<td><label for="PW2">PW </label></td>
-				<td>
-				<input type="password" id="PW2" name="PW2" placeholder="PW">
-				</td>
-			</tr>
-		</table>
 
-		<table>
+		<form>
+			<table>
+				<tr>
+					<td><label style="color: black" for="ID2">ID </label></td>
+					<td>
+					<input type="text" id="ID2" name="ID2" placeholder="ID">
+					</td>
+				</tr>
+				<tr>
+					<td><label style="color: black" for="PW2">PW </label></td>
+					<td>
+					<input type="password" id="PW2" name="PW2" placeholder="PW">
+					</td>
+				</tr>
+			</table>
 
-			<tr>
-				<td>
-				<input type="button" class="efff" id="ok" value="확인"/>
-				</td>
-				<td>
-				<input type="button" class="efff" id="no" value="취소"/>
-				</td>
-			</tr>
-		</table>
+			<table>
 
+				<tr>
+					<td>
+					<input type="button" class="efff" id="ok" value="확인"/>
+					</td>
+					<td>
+					<input type="button" class="efff" id="no" value="취소"/>
+					</td>
+				</tr>
+			</table>
+
+		</form>
+
+	</div>
+
+	<div style="background-color: #F6F6F6" id="dialog3" title="회원가입">
+		<form action="http://18.208.57.18:8080/uploadImage" method="post" enctype="multipart/form-data">
+			<table>
+				<tr>
+					<td><label style="color: black" for="ID3">ID </label></td>
+					<td>
+					<input style="width: 180px" type="text" id="ID3" name="ID3" placeholder="ID">
+					</td>
+				</tr>
+				<tr>
+					<td><label style="color: black" for="PW3">PW </label></td>
+					<td>
+					<input style="width: 180px" type="password" id="PW3" name="PW3" placeholder="PW">
+					</td>
+				</tr>
+				<tr>
+					<td><label style="color: black" for="au">인증</label></td>
+					<td>
+					<input style="width: 180px" type="file" id="au" name="au" placeholder="au">
+					</td>
+				</tr>
+			</table>
+
+			<table>
+
+				<tr>
+					<td>
+					<button type="submit" class="efff" id="okk" >
+						확인
+					</button></td>
+					<td>
+					<input type="button" class="efff" id="noo" value="취소"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+	<div id="sig" title="성공">
+		<h3 style="text-align: center">회원가입 되었습니다.</h3>
+	</div>
+
+	<div id="sig2" title="실패">
+		<h3 style="text-align: center">이미 존재하는 아이디입니다.</h3>
+	</div>
+
+	<div id="sig3" title="실패">
+		<h3 style="text-align: center">아이디를 입력해주세요</h3>
+	</div>
+
+	<div id="sig4" title="실패">
+		<h3 style="text-align: center">비밀번호를 입력해주세요</h3>
+	</div>
+
+	<div id="log" title="실패">
+		<h3 style="text-align: center">유효하지 않은 계정입니다.</h3>
+	</div>
+
+	<div id="log2" title="실패">
+		<h3 style="text-align: center">유효하지 않은 비밀번호 입니다.</h3>
+	</div>
+
+	<div id="log3" title="실패">
+		<h3 style="text-align: center">아이디를 입력해주세요</h3>
+	</div>
+
+	<div id="log4" title="실패">
+		<h3 style="text-align: center">비밀번호를 입력해주세요</h3>
 	</div>
 
 </body>

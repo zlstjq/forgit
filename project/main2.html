@@ -280,9 +280,9 @@
 						dataType : 'json',
 						type : 'POST',
 						success : function(result) {
-							var i2 = result[0].num;
+							var i = result[0].num;
 							var score = result[0].score;
-							insert(i2,score);
+							insert(i, score);
 							location.href = "fire.html";
 						},
 						fail : function(err) {
@@ -290,7 +290,6 @@
 						}
 					});
 
-					
 				});
 
 			});
@@ -302,6 +301,8 @@
 				<a style="width: 65px;" id="back" data-icon="refresh" class="ui-btn-right" >logout</a>
 				<a style="margin-top: 40px; width: 65px;" id="setting" data-icon="gear" class="ui-btn-right" >setting</a>
 				<a style="margin-top: 80px; width: 65px;" id="user" data-icon="user" class="ui-btn-right" >UserInfo</a>
+				<a style="margin-top: 120px; width: 65px;" id="edit" data-icon="edit" class="ui-btn-right" >Scenario</a>
+				<a style="margin-top: 160px; width: 65px;" id="hint" data-icon="edit" class="ui-btn-right" >Hint</a>
 			</div>
 			<div data-role="content" id="content">
 
